@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 350px;
+    width: 100%;
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    color: white;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.previous-operand {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    min-height: 1.2rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.current-operand {
+    font-size: 2rem;
+    font-weight: bold;
+    min-height: 2.5rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 1);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-number {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.btn-number:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.btn-operator {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    color: white;
+}
+
+.btn-operator:hover {
+    background: linear-gradient(135deg, #ff5252, #ff4444);
+}
+
+.btn-operator.active {
+    background: linear-gradient(135deg, #ff4444, #ff3333);
+}
+
+.btn-equals {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    color: white;
+    grid-row: span 2;
+    grid-column: 4;
+}
+
+.btn-equals:hover {
+    background: linear-gradient(135deg, #44a08d, #3d8b7d);
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, #ffa726, #ff9800);
+    color: white;
+}
+
+.btn-clear:hover {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 20px;
+        max-width: 320px;
+    }
+    
+    .btn {
+        height: 55px;
+        font-size: 1.1rem;
+    }
+    
+    .current-operand {
+        font-size: 1.8rem;
+    }
+    
+    .previous-operand {
+        font-size: 0.9rem;
+    }
+}
+
+/* Button press animation */
+.btn.pressed {
+    animation: buttonPress 0.1s ease;
+}
+
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Error state */
+.display.error .current-operand {
+    color: #ff6b6b;
+}
+
+/* Keyboard indicator */
+.calculator::after {
+    content: "Use keyboard for input";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+}
+
+.calculator {
+    position: relative;
+}
